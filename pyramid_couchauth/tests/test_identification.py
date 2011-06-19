@@ -10,12 +10,14 @@
 # fitness for a particular purpose are disclaimed.
 
 import unittest
-import pyramid_couchauth.tests.test_principal
-import pyramid_couchauth.tests.test_identification
+from pyramid_couchauth.interfaces import IIdentifier
+from pyramid_couchauth.identification import AuthTktIdentifier
 
-def runtests():
-    suites = unittest.TestSuite()
-    suites.addTest(pyramid_couchauth.tests.test_principal.suite())
-    suites.addTest(pyramid_couchauth.tests.test_identification.suite())
-    return suites
+def suite():
+    return unittest.defaultTestLoader.loadTestsFromTestCase(TestAuthTktIdentifier)
+
+class TestAuthTktIdentifier(unittest.TestCase):
+
+    def test_interface(self):
+        self.assertTrue(IIdentifier.implementedBy(AuthTktIdentifier))
 

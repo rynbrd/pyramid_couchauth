@@ -14,4 +14,5 @@ pyramid_couchauth.egg-info/requires.txt
 pyramid_couchauth.egg-info/top_level.txt
 pyramid_couchauth/tests/__init__.py
 pyramid_couchauth/tests/run.py
+pyramid_couchauth/tests/test_identification.py
 pyramid_couchauth/tests/test_principal.py
