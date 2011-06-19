@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: pyramid-couchauth
+Version: 0.1alpha1dev
+Summary: Plugins for CouchDB Authentication/Authorization
+Home-page: https://github.com/BlueDragonX/pyramid_couchauth
+Author: Ryan Bourgeois
+Author-email: bluedragonx@gmail.com
+License: BSD-derived
+Description: Plugins for CouchDB Authentication/Authorization
+Platform: UNKNOWN
