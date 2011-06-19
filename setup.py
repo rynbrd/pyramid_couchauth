@@ -14,6 +14,10 @@ import sys, os
 
 version = '0.1alpha1'
 
+requires = [
+    'pyramid >= 1.0',
+    'couchdbkit >= 0.5.0']
+
 setup(name = 'pyramid_couchauth',
     version = version,
     description = "Pyramid CouchDB Auth Add-On",
@@ -27,7 +31,7 @@ setup(name = 'pyramid_couchauth',
     packages = find_packages(exclude=['ez_setup', 'examples', 'tests']),
     include_package_data = True,
     zip_safe = False,
-    install_requires = [
-        'pyramid >= 1.0',
-        'couchdbkit >= 0.5.0'],
+    install_requires = requires,
+    tests_require = requires,
+    test_suite = "pyramid_couchauth.tests.run.runtests",
     entry_points = "")

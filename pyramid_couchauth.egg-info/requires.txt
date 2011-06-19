@@ -1,3 +1,2 @@
-couchdbkit >= 0.5.0
 pyramid >= 1.0
-py_bcrypt
+couchdbkit >= 0.5.0

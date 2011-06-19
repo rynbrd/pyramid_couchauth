@@ -9,7 +9,9 @@ pyramid_couchauth/principal.py
 pyramid_couchauth.egg-info/PKG-INFO
 pyramid_couchauth.egg-info/SOURCES.txt
 pyramid_couchauth.egg-info/dependency_links.txt
-pyramid_couchauth.egg-info/entry_points.txt
 pyramid_couchauth.egg-info/not-zip-safe
 pyramid_couchauth.egg-info/requires.txt
 pyramid_couchauth.egg-info/top_level.txt
+pyramid_couchauth/tests/__init__.py
+pyramid_couchauth/tests/run.py
+pyramid_couchauth/tests/test_principal.py
