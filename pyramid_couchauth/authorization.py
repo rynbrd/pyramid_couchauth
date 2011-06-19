@@ -24,8 +24,24 @@ class CouchAuthorizationPolicy:
             perm_users_view=None,
             perm_groups_view='pyramid/perm_groups'):
         """
-        Initialize the authorization policy.
-        :param translations: The CouchDB to object translations.
+        Creates a new CouchDB authorization policy.
+        :param database: The database where authorization data is stored.
+        :param user_perms_view: A view which maps permission names (the values)
+            to usernames (the keys). A None value disables direct user
+            permission mapping. This is useful when using groups for all
+            permission controls.
+        :param group_perms_view: A view which maps permission names (the
+            values) to group names (the keys). A None value disables group
+            permission mapping. This is useful if you wish all permissions to
+            be controlled at the user level.
+        :param perm_users_view: A view which maps usernames (the values) to
+            permission names (the keys). A None value disables permission user
+            mapping. This is useful when using groups for all permission
+            controls.
+        :param perm_groups_view: A view which maps group names (the values) to
+            permission names (the keys). A None value disables permission group
+            mapping. This is useful if you wish all permissions to be
+            controlled at the user level.
         """
         self.database = database
         self.user_perms_view = user_perms_view
@@ -37,10 +53,9 @@ class CouchAuthorizationPolicy:
         """
         Return True if any of the principals have the provided permission in
         the given context. Return False otherwise.
-        :param context: The context to check the principal's permission
-            against. 
+        :param context: The context in which permission checking is occuring.
         :param principals: The list of principals to check.
-        :param permission: The permission to check.
+        :param permission: The permission to check the principals for.
         :return: True if one of the principals has the permission, false
             otherwise.
         """
@@ -65,9 +80,9 @@ class CouchAuthorizationPolicy:
         """
         Return a list of principals who have the provided permission in the
         given context.
-        :param context: The context to check permissions in.
+        :param context: The context in which permission checking is occuring.
         :param permission: The permission to retrieve principals for.
-        :return: A list of principals.
+        :return: A list of principals which contain the given permission.
         """
         principals = []
         if self.perm_users_view is not None:

@@ -15,8 +15,8 @@ from pyramid_couchauth.interfaces import IIdentifier
 
 class AuthTktIdentifier:
     """
-    Identifier for storing the currently authenticated principle in an authtkt
-    cookie. Uses pyramid.authentication.AuthTktCookieHelper.
+    An identifier for storing the currently authenticated principle in an
+    authtkt cookie. Uses pyramid.authentication.AuthTktCookieHelper.
     """
     implements(IIdentifier)
 
@@ -34,26 +34,26 @@ class AuthTktIdentifier:
 
     def identity(self, request):
         """
-        Return the principle of the authenticated user.
+        Return the username of the remembered user.
         :param request: The WSGI request.
-        :return: The principle of the authenticated user..
+        :return: The username of the remembered user.
         """
         identifier = self.cookie.identify(request)
         return identifier['userid'] if identifier else None
 
-    def remember(self, request, principle, **kw):
+    def remember(self, request, username, **kw):
         """
         Return the headers necessary for remembering the principle.
         :param request: The WSGI request.
-        :param principle: The principle to save.
+        :param username: The username to remember.
         :param kw: Additional identifier parameters.
         :return: A list of headers to add to the response.
         """
-        return self.cookie.remember(request, principle, **kw)
+        return self.cookie.remember(request, username, **kw)
 
     def forget(self, request):
         """
-        Return the headers necessary for forgetting any saved principle.
+        Return the headers necessary for forgetting any remembered principle.
         :param request: The WSGI request.
         :return: A list of headers to add to the response.
         """

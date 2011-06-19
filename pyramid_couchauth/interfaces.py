@@ -18,16 +18,16 @@ class IIdentifier(Interface):
 
     def identify(self, request):
         """
-        Return the principle of the currently authenticated user or None if no
-        user is authorized.
+        Return the username of the currently remembered user or None if no user
+        has been remembered.
         :param request: The WSGI request.
-        :return: A string with the currently authenticated principle or None.
+        :return: The remembered username or None.
         """
 
-    def remember(self, request, principle, **kw):
+    def remember(self, request, username, **kw):
         """
-        Return a list of headers necessary for remembering the given principle.
-        These will be appended to the response.
+        Return a list of headers necessary for remembering the given username.
+        These will be passed as part of the WSGI response.
         :param request: The WSGI request.
         :param principle: The principle to save.
         :param kw: Additional identifier parameters.
@@ -36,7 +36,8 @@ class IIdentifier(Interface):
 
     def forget(self, request):
         """
-        Return a list of headers necessary for forgetting any saved principle.
+        Return a list of headers necessary for forgetting the remembered
+        username.
         :param request: The WSGI request.
         :return: A list of headers to add to the response.
         """

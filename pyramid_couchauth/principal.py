@@ -19,15 +19,14 @@ class Principal:
         """
         Create a new Principal object.
         :param principal: A full principal string. Overrides type and name if
-            given.
+            given as part of the string.
         :param type: The type of the principal.
         :param name: The name of the principal.
         """
+        self.type = type
+        self.name = name
         if principal is not None:
             self.parse(principal)
-        else:
-            self.type = type
-            self.name = name
 
     def parse(self, principal):
         """
@@ -36,7 +35,6 @@ class Principal:
         """
         p = principal.partition(':')
         if p[1] == '':
-            self.type = None
             self.name = p[0]
         else:
             self.type = p[0]
