@@ -1,4 +1,4 @@
-# Copyright (c) 2011, Ryan Bourgeois <bluedragonx@gmail.com>
+# Copyright (c) 2011-2012, Ryan Bourgeois <bluedragonx@gmail.com>
 # All rights reserved.
 #
 # This software is licensed under a modified BSD license as defined in the
