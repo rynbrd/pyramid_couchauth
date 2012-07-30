@@ -8,8 +8,13 @@
 # This software is provided "as is" and any express or implied warranties,
 # including, but not limited to, the implied warranties of merchantability and
 # fitness for a particular purpose are disclaimed.
+"""
+Implement authentication principals.
+"""
+
 
 class Principal:
+
     """
     Abstracts an auth principal. Principals can be users, groups, or even other
     entities. This class allows the principal to carry its type with it.
@@ -18,6 +23,7 @@ class Principal:
     def __init__(self, principal=None, type=None, name=None):
         """
         Create a new Principal object.
+
         :param principal: A full principal string. Overrides type and name if
             given as part of the string.
         :param type: The type of the principal.
@@ -31,7 +37,8 @@ class Principal:
     def parse(self, principal):
         """
         Parses a principal string and saves it in the object.
-        :param principal: A string containing the locally formatted principle.
+
+        :param principal: A string containing the locally formatted principal.
         """
         p = principal.partition(':')
         if p[1] == '':
@@ -48,7 +55,7 @@ class Principal:
 
     def __repr__(self):
         """
-        Create a string representation of the object. Useful for debug output.
+        Create a string representation of the object.
         """
         esc = lambda s: s.replace("'", "\\'")
         params = []
