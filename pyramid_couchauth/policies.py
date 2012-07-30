@@ -35,7 +35,7 @@ class CouchAuthenticationPolicy:
             existance of a user.
         :param user_groups_view: A view which maps group names (the value) to
             their member usernames (the key). This view is used to expand a
-            user principle into group principals.
+            user principal into group principals.
         :param identifier: The identifier object to use. The identifier is used
             to store authenticated user information. It must implement the
             IIdentifier interface.
@@ -95,7 +95,7 @@ class CouchAuthenticationPolicy:
         """
         Retrieve the effective principals for the current request.
         :param request: The WSGI request.
-        :return: A list of principles.
+        :return: A list of principals.
         """
         principals = [Everyone]
         username = self.unauthenticated_userid(request)
