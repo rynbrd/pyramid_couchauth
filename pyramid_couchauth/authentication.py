@@ -105,7 +105,7 @@ class CouchAuthenticationPolicy:
         :param kw: Additional parameters.
         :return: A list of headers.
         """
-        pobj = Principle(principal, 'user')
+        pobj = Principal(principal, 'user')
         return self.identifier.remember(request, pobj.name, **kw)
 
     def forget(self, request):
