@@ -8,4 +8,7 @@
 # This software is provided "as is" and any express or implied warranties,
 # including, but not limited to, the implied warranties of merchantability and
 # fitness for a particular purpose are disclaimed.
+"""
+Implements auth/auth support in Pyramid against CouchDB.
+"""
 
