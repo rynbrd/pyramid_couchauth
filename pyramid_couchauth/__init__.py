@@ -35,11 +35,12 @@ def configure(config, database):
     from pyramid_couchauth.policies import (CouchAuthenticationPolicy,
         CouchAuthorizationPolicy)
 
-    secret = get_setting('couchauth.secret', 'secret'))
+    secret = get_setting('couchauth.secret', 'secret')
     identifier = AuthTktIdentifier(secret)
     authentication = CouchAuthenticationPolicy(database, identifier)
     authorization = CouchAuthorizationPolicy(database)
 
     config.set_authentication_policy(authentication)
     config.set_authorization_policy(authorization)
+    return config
 
