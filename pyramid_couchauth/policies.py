@@ -74,7 +74,7 @@ class CouchAuthenticationPolicy:
         :param request: The WSGI request.
         :return: The unauthenticated username or None if no user is present.
         """
-        return self.identifier.identity(request)
+        return self.identifier.identify(request)
 
     def authenticated_userid(self, request):
         """

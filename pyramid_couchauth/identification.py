@@ -37,7 +37,7 @@ class AuthTktIdentifier:
             reissue_time=reissue_time, max_age=max_age, http_only=http_only,
             path=path, wild_domain=wild_domain)
 
-    def identity(self, request):
+    def identify(self, request):
         """
         Return the username of the remembered user.
 
