@@ -13,7 +13,7 @@ from pyramid_couchauth.principal import Principal
 class TestPrincipal(unittest.TestCase):
 
     """
-    Test Principal class.
+    Test the Principal class.
     """
 
     def setUp(self):
