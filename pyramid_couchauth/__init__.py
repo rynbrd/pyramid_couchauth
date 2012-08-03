@@ -6,6 +6,7 @@
 Implements auth/auth support in Pyramid against CouchDB.
 """
 
+
 def configure(config, database):
     """
     Load Pyramid with the couchauth auth/auth policies.

@@ -2,4 +2,7 @@
 #
 # This project is free software according to the BSD-modified license. Refer to
 # the LICENSE file for complete details.
+"""
+Unit tests package for couchauth.
+"""
 
