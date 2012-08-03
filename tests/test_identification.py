@@ -64,7 +64,7 @@ class TestAuthTktIdentifier(unittest.TestCase):
         request = testing.DummyRequest()
         request.environ['HTTP_HOST'] = domain
         request.environ['REMOTE_ADDR'] = remote_addr
-        identifier = AuthTktIdentifier('secret')
+        identifier = AuthTktIdentifier(secret)
         headers = identifier.remember(request, username)
         name = headers[0][0]
         cookie = re.sub(';.*', '', headers[0][1][len(name)-1:]).strip('"')
