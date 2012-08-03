@@ -12,6 +12,10 @@ from pyramid_couchauth.principal import Principal
 
 class TestPrincipal(unittest.TestCase):
 
+    """
+    Test Principal class.
+    """
+
     def setUp(self):
         """Initialize test values."""
         self.type = 'user'
