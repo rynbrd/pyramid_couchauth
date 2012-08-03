@@ -29,7 +29,25 @@ Usage Example
 
 A working example is available on [github][3].
 
-[1]: http://couchdb.apache.org/									"CouchDB"
-[2]: http://pylonsproject.org/									"Pyramid"
-[3]: https://github.com/BlueDragonX/pyramid_couchauth_example/	"pyramid_couchauth_example"
+
+Authors
+-------
+
+The pyramid_couchauth project is the product of work by the following people:
+
+- Ryan Bourgeois <bluedragonx@gmail.com>
+
+
+License
+-------
+
+The pyramid_couchauth project is licensed under the BSD-derived license and is
+copyright (c) 2012 Ryan Bourgeois. A copy of the license is included in the
+LICENSE file. If it is missing a copy can be found on the [project page][4].
+
+
+[1]: http://couchdb.apache.org/ CouchDB
+[2]: http://pylonsproject.org/ Pyramid
+[3]: https://github.com/BlueDragonX/pyramid_couchauth_example/ pyramid_couchauth_example
+[4]: https://github.com/BlueDragonX/pyramid_couchauth/blob/master/LICENSE License
 
