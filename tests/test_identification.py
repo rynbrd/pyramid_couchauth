@@ -1,4 +1,4 @@
-# Copyright (c) 2011, Ryan Bourgeois <bluedragonx@gmail.com>
+# Copyright (c) 2011-2012, Ryan Bourgeois <bluedragonx@gmail.com>
 # All rights reserved.
 #
 # This software is licensed under a modified BSD license as defined in the
@@ -8,6 +8,9 @@
 # This software is provided "as is" and any express or implied warranties,
 # including, but not limited to, the implied warranties of merchantability and
 # fitness for a particular purpose are disclaimed.
+"""
+Test identifiers.
+"""
 
 import re
 import unittest
@@ -15,10 +18,6 @@ from pyramid import testing
 from pyramid import authentication as auth
 from pyramid_couchauth.interfaces import IIdentifier
 from pyramid_couchauth.identification import AuthTktIdentifier
-
-
-def suite():
-    return unittest.defaultTestLoader.loadTestsFromTestCase(TestAuthTktIdentifier)
 
 
 class TestAuthTktIdentifier(unittest.TestCase):
