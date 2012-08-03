@@ -1,6 +1,6 @@
 
-CouchDB Auth for Pyramid
-========================
+CouchDB Auth/Auth for Pyramid
+=============================
 
 [CouchDB][1] authorization/authentication plugins for [Pyramid][2].
 
