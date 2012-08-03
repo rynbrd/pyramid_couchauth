@@ -46,8 +46,8 @@ copyright (c) 2012 Ryan Bourgeois. A copy of the license is included in the
 LICENSE file. If it is missing a copy can be found on the [project page][4].
 
 
-[1]: http://couchdb.apache.org/ CouchDB
-[2]: http://pylonsproject.org/ Pyramid
-[3]: https://github.com/BlueDragonX/pyramid_couchauth_example/ pyramid_couchauth_example
-[4]: https://github.com/BlueDragonX/pyramid_couchauth/blob/master/LICENSE License
+[1]: http://couchdb.apache.org/	CouchDB
+[2]: http://pylonsproject.org/	Pyramid
+[3]: https://github.com/BlueDragonX/pyramid_couchauth_example/				pyramid_couchauth_example
+[4]: https://github.com/BlueDragonX/pyramid_couchauth/blob/master/LICENSE	License
 
