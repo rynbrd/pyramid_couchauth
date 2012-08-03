@@ -193,11 +193,11 @@ class CouchAuthorizationPolicy:
         principals = []
         if self.perm_users_view is not None:
             users = self.database.view(self.perm_users_view, key=permission)
-            pstrs = [str(Principal(type='user', name=user)) for user in users]
+            pstrs = [str(Principal(type='user', name=user['value'])) for user in users]
             principals.extend(pstrs)
         if self.perm_groups_view is not None:
             groups = self.database.view(self.perm_groups_view, key=permission)
-            pstrs = [str(Principal(type='group', name=group)) for group in groups]
+            pstrs = [str(Principal(type='group', name=group['value'])) for group in groups]
             principals.extend(pstrs)
         return principals
 
