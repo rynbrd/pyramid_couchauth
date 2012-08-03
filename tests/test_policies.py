@@ -153,13 +153,13 @@ class TestCouchAuthorizationPolicy(TestPolicy):
 
     def test_permits_allow(self):
         """Test the permits method when permission is granted."""
-        principal = Principal(type='user', name='admin')
+        principal = Principal(type='group', name='administrators')
         self.assertTrue(self.policy.permits(self.context, [str(principal)],
             'superpowers'), 'admin does not have superpowers')
 
     def test_permits_deny(self):
         """Test the permits method when permission is denied."""
-        principal = Principal(type='user', name='admin')
+        principal = Principal(type='group', name='administrators')
         self.assertFalse(self.policy.permits(self.context, [str(principal)],
             'godmode'), 'admin has godmode')
 
