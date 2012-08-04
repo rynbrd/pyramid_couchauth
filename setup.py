@@ -15,7 +15,8 @@ readme = os.path.join(here, 'README.md')
 
 requires = [
     'pyramid>=1.0',
-    'couchdbkit>=0.5.0']
+    'couchdbkit>=0.5.0',
+    'py_bcrypt']
 testing_extras = [
     'nose']
 
