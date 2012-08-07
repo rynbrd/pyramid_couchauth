@@ -17,23 +17,28 @@ class CouchAuthenticationPolicy:
 
     """CouchDB authentication policy."""
 
-    def __init__(self, database, identifier, 
-            user_names_view='pyramid/user_names',
-            user_groups_view='pyramid/user_groups'):
+    def __init__(self, database, identifier, user_names_view=None,
+            user_groups_view=None):
         """
         Create a new CouchDB authentication policy object.
 
         :param database: The database where authentication data is stored.
-        :param user_names_view: A view which maps the username as the key. The
-            value may be anything as this view is only used to validate the
-            existance of a user.
-        :param user_groups_view: A view which maps group names (the value) to
-            their member usernames (the key). This view is used to expand a
-            user principal into group principals.
         :param identifier: The identifier object to use. The identifier is used
             to store authenticated user information. It must implement the
             IIdentifier interface.
+        :param user_names_view: A view which maps the username as the key. The
+            value may be anything as this view is only used to validate the
+            existance of a user. Defaults to 'pyramid/user_names'.
+        :param user_groups_view: A view which maps group names (the value) to
+            their member usernames (the key). This view is used to expand a
+            user principal into group principals. Defaults to
+            'pyramid/user_groups'.
         """
+        if user_names_view is None:
+            user_names_view = 'pyramid/user_names'
+        if user_groups_view is None:
+            user_groups_view = 'pyramid/user_groups'
+
         self.identifier = identifier
         self.database = database
         self.user_names_view = user_names_view
@@ -126,29 +131,38 @@ class CouchAuthorizationPolicy:
 
     def __init__(self, database,
             user_perms_view=None,
-            group_perms_view='pyramid/group_perms',
+            group_perms_view=None,
             perm_users_view=None,
-            perm_groups_view='pyramid/perm_groups'):
+            perm_groups_view=None):
         """
         Creates a new CouchDB authorization policy.
         :param database: The database where authorization data is stored.
         :param user_perms_view: A view which maps permission names (the values)
-            to usernames (the keys). A None value disables direct user
+            to usernames (the keys). A False value disables direct user
             permission mapping. This is useful when using groups for all
-            permission controls.
+            permission controls. Defaults to False.
         :param group_perms_view: A view which maps permission names (the
-            values) to group names (the keys). A None value disables group
+            values) to group names (the keys). A False value disables group
             permission mapping. This is useful if you wish all permissions to
-            be controlled at the user level.
+            be controlled at the user level. Defaults to 'pyramid/group_perms'.
         :param perm_users_view: A view which maps usernames (the values) to
-            permission names (the keys). A None value disables permission user
+            permission names (the keys). A False value disables permission user
             mapping. This is useful when using groups for all permission
-            controls.
+            controls.  Defaults to False.
         :param perm_groups_view: A view which maps group names (the values) to
             permission names (the keys). A None value disables permission group
             mapping. This is useful if you wish all permissions to be
-            controlled at the user level.
+            controlled at the user level. Defaults to 'pyramid/perm_groups'.
         """
+        if user_perms_view is None:
+            user_perms_view = False
+        if group_perms_view is None:
+            group_perms_view = 'pyramid/group_perms'
+        if perm_users_view is None:
+            perm_users_view = False
+        if perm_groups_view is None:
+            perm_groups_view = 'pyramid/perm_groups'
+
         self.database = database
         self.user_perms_view = user_perms_view
         self.group_perms_view = group_perms_view
@@ -170,12 +184,12 @@ class CouchAuthorizationPolicy:
                 pobj = Principal(type='user', name=Everyone)
             else:
                 pobj = Principal(principal)
-            if pobj.type == 'user' and self.user_perms_view is not None:
+            if pobj.type == 'user' and self.user_perms_view:
                 perms = self.database.view(self.user_perms_view, key=pobj.name)
                 for perm in perms:
                     if perm['value'] == permission:
                         return True
-            elif pobj.type == 'group' and self.group_perms_view is not None:
+            elif pobj.type == 'group' and self.group_perms_view:
                 perms = self.database.view(self.group_perms_view, key=pobj.name)
                 for perm in perms:
                     if perm['value'] == permission:
@@ -191,11 +205,11 @@ class CouchAuthorizationPolicy:
         :return: A list of principals which contain the given permission.
         """
         principals = []
-        if self.perm_users_view is not None:
+        if self.perm_users_view:
             users = self.database.view(self.perm_users_view, key=permission)
             pstrs = [str(Principal(type='user', name=user['value'])) for user in users]
             principals.extend(pstrs)
-        if self.perm_groups_view is not None:
+        if self.perm_groups_view:
             groups = self.database.view(self.perm_groups_view, key=permission)
             pstrs = [str(Principal(type='group', name=group['value'])) for group in groups]
             principals.extend(pstrs)

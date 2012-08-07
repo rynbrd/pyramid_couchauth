@@ -142,11 +142,11 @@ class TestCouchAuthorizationPolicy(TestPolicy):
         """Test the __init__ method."""
         self.assertEqual(self.policy.database, self.database,
             'database not set to parameter value')
-        self.assertTrue(self.policy.user_perms_view is None,
+        self.assertTrue(self.policy.user_perms_view is False,
             'user_perms_view not set to default value')
         self.assertEqual(self.policy.group_perms_view, 'pyramid/group_perms',
             'group_perms_view not set to default value')
-        self.assertTrue(self.policy.perm_users_view is None,
+        self.assertTrue(self.policy.perm_users_view is False,
             'perm_users_view not set to default value')
         self.assertEqual(self.policy.perm_groups_view, 'pyramid/perm_groups',
             'perm_groups_view not set to default value')
