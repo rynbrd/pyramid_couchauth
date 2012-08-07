@@ -58,8 +58,10 @@ def configure(config, database user_names_view='pyramid/user_names',
 
     secret = get_setting('couchauth.secret', 'secret')
     identifier = AuthTktIdentifier(secret)
-    authentication = CouchAuthenticationPolicy(database, identifier)
-    authorization = CouchAuthorizationPolicy(database)
+    authentication = CouchAuthenticationPolicy(database, identifier,
+        user_names_view, user_groups_view)
+    authorization = CouchAuthorizationPolicy(database, user_perms_view,
+        group_perms_view, perm_users_view, perm_groups_view)
 
     config.set_authentication_policy(authentication)
     config.set_authorization_policy(authorization)
