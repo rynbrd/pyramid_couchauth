@@ -102,7 +102,7 @@ def configure(config):
 
     def setting(key, default=None):
         if key in settings and settings[key]:
-            return key
+            return settings[key]
         return default
 
     from pyramid_couchauth.identification import AuthTktIdentifier
@@ -111,13 +111,13 @@ def configure(config):
 
     identifier = AuthTktIdentifier(session.secret)
     authentication = CouchAuthenticationPolicy(session.database, identifier,
-        setting('user_names_view', 'pyramid/user_names'),
-        setting('user_groups_view', 'pyramid/user_groups'))
+        setting('couchauth.user_names_view', 'pyramid/user_names'),
+        setting('couchauth.user_groups_view', 'pyramid/user_groups'))
     authorization = CouchAuthorizationPolicy(session.database,
-        setting('user_perms_view'),
-        setting('group_perms_view', 'pyramid/group_perms'),
-        setting('perm_users_view'),
-        setting('perm_groups_view', 'pyramid/perm_groups'))
+        setting('couchauth.user_perms_view'),
+        setting('couchauth.group_perms_view', 'pyramid/group_perms'),
+        setting('couchauth.perm_users_view'),
+        setting('couchauth.perm_groups_view', 'pyramid/perm_groups'))
 
     config.set_authentication_policy(authentication)
     config.set_authorization_policy(authorization)
