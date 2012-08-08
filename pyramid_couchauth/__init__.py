@@ -61,51 +61,49 @@ class Session:
 session = Session()
 
 
-def configure(config, secret=None, database=None, user_names_view='pyramid/user_names',
-        user_groups_view='pyramid/user_groups', user_perms_view=None,
-        group_perms_view='pyramid/group_perms', perm_users_view=None,
-        perm_groups_view='pyramid/perm_groups'):
+def configure(config):
     """
     Configure Pyramid to use couchauth.
 
     :param config: The pyramid config object.
-    :param secret: The shared secret. If not None it overrides the value in the
-        session object.
-    :param database: The auth/auth database. If not None it overrides the value
-        in the session object.
-    :param user_names_view: A view which maps the username as the key. The
-        value may be anything as this view is only used to validate the
-        existance of a user. Defaults to 'pyramid/user_names'.
-    :param user_groups_view: A view which maps group names (the value) to
-        their member usernames (the key). This view is used to expand a
-        user principal into group principals. Defaults to
-        'pyramid/user_groups'.
-    :param user_perms_view: A view which maps permission names (the values)
-        to usernames (the keys). A None value disables direct user
-        permission mapping. This is useful when using groups for all
-        permission controls. Defaults to None.
-    :param group_perms_view: A view which maps permission names (the
-        values) to group names (the keys). A None value disables group
-        permission mapping. This is useful if you wish all permissions to
-        be controlled at the user level. Defaults to 'pyramid/group_perms'.
-    :param perm_users_view: A view which maps usernames (the values) to
-        permission names (the keys). A None value disables permission user
-        mapping. This is useful when using groups for all permission
-        controls.  Defaults to None.
-    :param perm_groups_view: A view which maps group names (the values) to
-        permission names (the keys). A None value disables permission group
-        mapping. This is useful if you wish all permissions to be
-        controlled at the user level. Defaults to 'pyramid/perm_groups'.
+
+    Settings:
+        couchauth.secret -- The shared secret. If not None it overrides the
+            value in the session object.
+        couchauth.db -- The auth/auth database. If not None it overrides the
+            value in the session object.
+        couchauth.user_names_view -- A view which maps the username as the key.
+            The value may be anything as this view is only used to validate the
+            existance of a user. Defaults to 'pyramid/user_names'.
+        couchauth.user_groups_view -- A view which maps group names (the value)
+            to their member usernames (the key). This view is used to expand a
+            user principal into group principals. Defaults to
+            'pyramid/user_groups'.
+        couchauth.user_perms_view -- A view which maps permission names (the
+            values) to usernames (the keys). A None value disables direct user
+            permission mapping. This is useful when using groups for all
+            permission controls. Defaults to None.
+        couchauth.group_perms_view -- A view which maps permission names (the
+            values) to group names (the keys). A None value disables group
+            permission mapping. This is useful if you wish all permissions to
+            be controlled at the user level. Defaults to 'pyramid/group_perms'.
+        couchauth.perm_users_view -- A view which maps usernames (the values)
+            to permission names (the keys). A None value disables permission
+            user mapping. This is useful when using groups for all permission
+            controls. Defaults to None.
+        couchauth.perm_groups_view -- A view which maps group names (the
+            values) to permission names (the keys). A None value disables
+            permission group mapping. This is useful if you wish all
+            permissions to be controlled at the user level. Defaults to
+            'pyramid/perm_groups'.
     """
     settings = config.get_settings()
     session.configure(settings)
-    if secret is not None:
-        session.secret = secret
-    if database is not None:
-        if isinstance(database, basestring):
-            import pyramid_couchdb
-            database = pyramid_couchdb.session.server.get_db(database)
-        session.database = database
+
+    def setting(key, default=None):
+        if key in settings and settings[key]:
+            return key
+        return default
 
     from pyramid_couchauth.identification import AuthTktIdentifier
     from pyramid_couchauth.policies import (CouchAuthenticationPolicy,
@@ -113,9 +111,13 @@ def configure(config, secret=None, database=None, user_names_view='pyramid/user_
 
     identifier = AuthTktIdentifier(session.secret)
     authentication = CouchAuthenticationPolicy(session.database, identifier,
-        user_names_view, user_groups_view)
-    authorization = CouchAuthorizationPolicy(session.databaseuser_perms_view,
-        group_perms_view, perm_users_view, perm_groups_view)
+        setting('user_names_view', 'pyramid/user_names'),
+        setting('user_groups_view', 'pyramid/user_groups'))
+    authorization = CouchAuthorizationPolicy(session.database,
+        setting('user_perms_view'),
+        setting('group_perms_view', 'pyramid/group_perms'),
+        setting('perm_users_view'),
+        setting('perm_groups_view', 'pyramid/perm_groups'))
 
     config.set_authentication_policy(authentication)
     config.set_authorization_policy(authorization)
