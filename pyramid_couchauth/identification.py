@@ -11,6 +11,9 @@ from pyramid.authentication import AuthTktCookieHelper
 from pyramid_couchauth.interfaces import IIdentifier
 
 
+__all__ = ['AuthTktIdentifier']
+
+
 @implementer(IIdentifier)
 class AuthTktIdentifier:
 
