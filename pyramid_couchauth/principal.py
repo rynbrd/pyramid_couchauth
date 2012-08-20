@@ -7,7 +7,7 @@ Implement authentication principals.
 """
 
 
-class Principal:
+class Principal(object):
 
     """
     Abstracts an auth principal. Principals can be users, groups, or even other

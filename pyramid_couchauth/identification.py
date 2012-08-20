@@ -15,7 +15,7 @@ __all__ = ['AuthTktIdentifier']
 
 
 @implementer(IIdentifier)
-class AuthTktIdentifier:
+class AuthTktIdentifier(object):
 
     """
     An identifier for storing the currently authenticated principal in an

@@ -16,7 +16,7 @@ __all__ = ['CouchAuthenticationPolicy', 'CouchAuthorizationPolicy']
 
 
 @implementer(IAuthenticationPolicy)
-class CouchAuthenticationPolicy:
+class CouchAuthenticationPolicy(object):
 
     """CouchDB authentication policy."""
 
@@ -124,7 +124,7 @@ class CouchAuthenticationPolicy:
 
 
 @implementer(IAuthorizationPolicy)
-class CouchAuthorizationPolicy:
+class CouchAuthorizationPolicy(object):
 
     """CouchDB authorization policy."""
 

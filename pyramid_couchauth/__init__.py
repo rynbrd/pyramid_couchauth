@@ -7,7 +7,7 @@ Implements auth/auth support in Pyramid against CouchDB.
 """
 
 
-class Session:
+class Session(object):
 
     """
     Store session information.

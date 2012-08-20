@@ -16,7 +16,7 @@ import random
 __all__ = ['ShaHasher', 'BlowfishHasher', 'PasswordHasher']
 
 
-class ShaHasher:
+class ShaHasher(object):
 
     """
     SHA-512 password hashing using hashlib.
@@ -59,7 +59,7 @@ class ShaHasher:
         return self.encrypt(password, salt) == crypthash
 
 
-class BlowfishHasher:
+class BlowfishHasher(object):
 
     """
     Blowfish password hashing using bcrypt.
@@ -97,7 +97,7 @@ class BlowfishHasher:
         return self.encrypt(password, crypthash) == crypthash
 
 
-class PasswordHasher:
+class PasswordHasher(object):
 
     """
     Password hashing facility.
