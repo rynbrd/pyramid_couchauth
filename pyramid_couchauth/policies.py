@@ -9,7 +9,7 @@ Policies for auth/auth against CouchDB.
 from zope.interface import implementer
 from pyramid.interfaces import IAuthenticationPolicy, IAuthorizationPolicy
 from pyramid.security import Authenticated, Everyone
-from pyramid_couchauth.principal import Principal
+from pyramid_couchauth.principals import Principal
 
 
 __all__ = ['CouchAuthenticationPolicy', 'CouchAuthorizationPolicy']

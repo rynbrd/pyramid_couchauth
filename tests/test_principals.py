@@ -7,7 +7,7 @@ Test the principal module.
 """
 
 import unittest
-from pyramid_couchauth.principal import Principal
+from pyramid_couchauth.principals import Principal
 
 
 class TestPrincipal(unittest.TestCase):
