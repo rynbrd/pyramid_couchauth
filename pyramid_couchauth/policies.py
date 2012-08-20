@@ -12,6 +12,9 @@ from pyramid.security import Authenticated, Everyone
 from pyramid_couchauth.principal import Principal
 
 
+__all__ = ['CouchAuthenticationPolicy', 'CouchAuthorizationPolicy']
+
+
 @implementer(IAuthenticationPolicy)
 class CouchAuthenticationPolicy:
 
