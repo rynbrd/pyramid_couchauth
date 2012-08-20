@@ -13,6 +13,9 @@ import base64
 import random
 
 
+__all__ = ['ShaHasher', 'BlowfishHasher', 'PasswordHasher']
+
+
 class ShaHasher:
 
     """
