@@ -10,6 +10,9 @@ project.
 from zope.interface import Interface
 
 
+__all__ = ['IIdentifier']
+
+
 class IIdentifier(Interface):
 
     """
