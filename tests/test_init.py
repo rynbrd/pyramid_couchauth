@@ -14,7 +14,7 @@ from pyramid_couchauth.policies import (CouchAuthenticationPolicy,
     CouchAuthorizationPolicy)
 
 
-class DummyConfig:
+class DummyConfig(object):
 
     """
     Dummy Pyramid config class.

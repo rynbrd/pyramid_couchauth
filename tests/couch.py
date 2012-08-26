@@ -6,7 +6,7 @@
 Dummy CouchDB database objects.
 """
 
-class DummyDatabase:
+class DummyDatabase(object):
 
     """
     Pretend to be a CouchDB database.
